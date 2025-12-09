@@ -64,12 +64,6 @@
             overflow: hidden;
         }
 
-        .profile-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         .hero-section {
             position: relative;
             height: 85vh;
@@ -162,7 +156,7 @@
         }
 
         .module-section {
-            padding: 60px 50px;
+            padding: 60px 0;
             position: relative;
         }
 
@@ -171,6 +165,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
+            padding: 0 50px;
         }
 
         .module-title {
@@ -191,6 +186,7 @@
 
         .carousel-wrapper {
             position: relative;
+            padding: 0 50px;
         }
 
         .carousel-container {
@@ -198,16 +194,16 @@
             position: relative;
         }
 
-        .carousel {
+        .carousel-track {
             display: flex;
             gap: 15px;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             padding: 10px 0;
         }
 
         .carousel-card {
-            min-width: 280px;
-            height: 160px;
+            min-width: 320px;
+            height: 180px;
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
@@ -217,65 +213,9 @@
         }
 
         .carousel-card:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
             z-index: 10;
-        }
-
-        .carousel-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .carousel-card-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-        }
-
-        .carousel-card-title {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.7);
-            border: none;
-            color: #fff;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            z-index: 100;
-            transition: all 0.3s;
-            opacity: 0;
-        }
-
-        .carousel-wrapper:hover .carousel-nav {
-            opacity: 1;
-        }
-
-        .carousel-nav:hover {
-            background: rgba(255,255,255,0.9);
-            color: #000;
-        }
-
-        .carousel-nav.prev {
-            left: 10px;
-        }
-
-        .carousel-nav.next {
-            right: 10px;
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
         }
 
         .placeholder-img {
@@ -284,21 +224,100 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
+            font-size: 64px;
             background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            position: relative;
         }
 
+        .carousel-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .carousel-card:hover .carousel-card-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .carousel-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .carousel-card-desc {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.8);
+            border: none;
+            color: #fff;
+            width: 60px;
+            height: 180px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            z-index: 100;
+            transition: all 0.3s;
+            opacity: 0;
+            font-weight: 300;
+        }
+
+        .carousel-wrapper:hover .carousel-nav {
+            opacity: 1;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(0,0,0,0.95);
+        }
+
+        .carousel-nav.prev {
+            left: 0;
+        }
+
+        .carousel-nav.next {
+            right: 0;
+        }
+
+        .carousel-nav:disabled {
+            opacity: 0 !important;
+            cursor: default;
+        }
+
+        /* Styles spécifiques pour chaque module */
         .module-1 .carousel-card:nth-child(1) .placeholder-img { background: linear-gradient(135deg, #8b6f47 0%, #5a4a3a 100%); }
         .module-1 .carousel-card:nth-child(2) .placeholder-img { background: linear-gradient(135deg, #4a5f3a 0%, #2a3f2a 100%); }
         .module-1 .carousel-card:nth-child(3) .placeholder-img { background: linear-gradient(135deg, #4a4a8f 0%, #2a2a5f 100%); }
         .module-1 .carousel-card:nth-child(4) .placeholder-img { background: linear-gradient(135deg, #6a6a6a 0%, #3a3a3a 100%); }
+        .module-1 .carousel-card:nth-child(5) .placeholder-img { background: linear-gradient(135deg, #7a3a3a 0%, #4a2a2a 100%); }
+        .module-1 .carousel-card:nth-child(6) .placeholder-img { background: linear-gradient(135deg, #3a7a7a 0%, #2a4a4a 100%); }
+        .module-1 .carousel-card:nth-child(7) .placeholder-img { background: linear-gradient(135deg, #7a7a3a 0%, #4a4a2a 100%); }
 
         .module-2 .carousel-card:nth-child(1) .placeholder-img { background: linear-gradient(135deg, #00d4ff 0%, #0080ff 100%); }
         .module-2 .carousel-card:nth-child(2) .placeholder-img { background: linear-gradient(135deg, #ff8a00 0%, #cc6600 100%); }
         .module-2 .carousel-card:nth-child(3) .placeholder-img { background: linear-gradient(135deg, #9b59b6 0%, #6a3a8c 100%); }
+        .module-2 .carousel-card:nth-child(4) .placeholder-img { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+        .module-2 .carousel-card:nth-child(5) .placeholder-img { background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); }
 
         .module-3 .carousel-card:nth-child(1) .placeholder-img { background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); }
         .module-3 .carousel-card:nth-child(2) .placeholder-img { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+        .module-3 .carousel-card:nth-child(3) .placeholder-img { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
+        .module-3 .carousel-card:nth-child(4) .placeholder-img { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); }
+        .module-3 .carousel-card:nth-child(5) .placeholder-img { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
 
         @media (max-width: 768px) {
             .navbar {
@@ -310,18 +329,26 @@
             }
 
             .module-section {
-                padding: 40px 20px;
+                padding: 40px 0;
+            }
+
+            .module-header {
+                padding: 0 20px;
+            }
+
+            .carousel-wrapper {
+                padding: 0 20px;
             }
 
             .carousel-card {
-                min-width: 220px;
-                height: 130px;
+                min-width: 260px;
+                height: 150px;
             }
 
             .carousel-nav {
                 width: 40px;
-                height: 40px;
-                font-size: 20px;
+                font-size: 28px;
+                height: 150px;
             }
         }
     </style>
@@ -361,48 +388,61 @@
             <span class="voir-tout">VOIR TOUT ›</span>
         </div>
         <div class="carousel-wrapper">
-            <button class="carousel-nav prev" onclick="scrollCarousel('carousel1', -1)">‹</button>
+            <button class="carousel-nav prev" onclick="slideCarousel('carousel1', -1)">‹</button>
             <div class="carousel-container">
-                <div class="carousel" id="carousel1">
+                <div class="carousel-track" id="carousel1">
                     <div class="carousel-card">
                         <div class="placeholder-img">👨</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 1</div>
+                            <div class="carousel-card-title">Qui suis-je ?</div>
+                            <div class="carousel-card-desc">Découvre ton identité spirituelle</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">🏕️</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 2</div>
+                            <div class="carousel-card-title">La Communauté</div>
+                            <div class="carousel-card-desc">L'importance du groupe</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">✨</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 3</div>
+                            <div class="carousel-card-title">La Foi</div>
+                            <div class="carousel-card-desc">Renforcer sa connexion</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">🌲</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 4</div>
+                            <div class="carousel-card-title">La Nature</div>
+                            <div class="carousel-card-desc">Les signes d'Allah</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">📚</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 5</div>
+                            <div class="carousel-card-title">Le Savoir</div>
+                            <div class="carousel-card-desc">L'apprentissage continu</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">🎯</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 6</div>
+                            <div class="carousel-card-title">Les Objectifs</div>
+                            <div class="carousel-card-desc">Définir sa voie</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">💪</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">La Persévérance</div>
+                            <div class="carousel-card-desc">Ne jamais abandonner</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-nav next" onclick="scrollCarousel('carousel1', 1)">›</button>
+            <button class="carousel-nav next" onclick="slideCarousel('carousel1', 1)">›</button>
         </div>
     </section>
 
@@ -412,42 +452,47 @@
             <span class="voir-tout">VOIR TOUT ›</span>
         </div>
         <div class="carousel-wrapper">
-            <button class="carousel-nav prev" onclick="scrollCarousel('carousel2', -1)">‹</button>
+            <button class="carousel-nav prev" onclick="slideCarousel('carousel2', -1)">‹</button>
             <div class="carousel-container">
-                <div class="carousel" id="carousel2">
+                <div class="carousel-track" id="carousel2">
                     <div class="carousel-card">
                         <div class="placeholder-img">📊</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 1</div>
+                            <div class="carousel-card-title">Budget Halal</div>
+                            <div class="carousel-card-desc">Gérer son argent selon l'Islam</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">☕</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 2</div>
+                            <div class="carousel-card-title">Dépenses Quotidiennes</div>
+                            <div class="carousel-card-desc">Les petites économies</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">💰</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 3</div>
+                            <div class="carousel-card-title">L'Épargne</div>
+                            <div class="carousel-card-desc">Construire son avenir</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">📈</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 4</div>
+                            <div class="carousel-card-title">Investissement Halal</div>
+                            <div class="carousel-card-desc">Faire fructifier licitement</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">💎</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 5</div>
+                            <div class="carousel-card-title">La Zakât</div>
+                            <div class="carousel-card-desc">Partager sa richesse</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-nav next" onclick="scrollCarousel('carousel2', 1)">›</button>
+            <button class="carousel-nav next" onclick="slideCarousel('carousel2', 1)">›</button>
         </div>
     </section>
 
@@ -457,85 +502,116 @@
             <span class="voir-tout">VOIR TOUT ›</span>
         </div>
         <div class="carousel-wrapper">
-            <button class="carousel-nav prev" onclick="scrollCarousel('carousel3', -1)">‹</button>
+            <button class="carousel-nav prev" onclick="slideCarousel('carousel3', -1)">‹</button>
             <div class="carousel-container">
-                <div class="carousel" id="carousel3">
+                <div class="carousel-track" id="carousel3">
                     <div class="carousel-card">
                         <div class="placeholder-img">🧠</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 1</div>
+                            <div class="carousel-card-title">Mémorisation</div>
+                            <div class="carousel-card-desc">Techniques efficaces</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">🎨</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 2</div>
+                            <div class="carousel-card-title">Créativité</div>
+                            <div class="carousel-card-desc">Développer son imagination</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">💡</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 3</div>
+                            <div class="carousel-card-title">Réflexion</div>
+                            <div class="carousel-card-desc">Penser de manière critique</div>
                         </div>
                     </div>
                     <div class="carousel-card">
                         <div class="placeholder-img">🔬</div>
                         <div class="carousel-card-overlay">
-                            <div class="carousel-card-title">Épisode 4</div>
+                            <div class="carousel-card-title">Analyse</div>
+                            <div class="carousel-card-desc">Comprendre en profondeur</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">🎓</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Méthodes d'Étude</div>
+                            <div class="carousel-card-desc">Apprendre efficacement</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-nav next" onclick="scrollCarousel('carousel3', 1)">›</button>
+            <button class="carousel-nav next" onclick="slideCarousel('carousel3', 1)">›</button>
         </div>
     </section>
 
     <script>
-        function scrollCarousel(carouselId, direction) {
-            const carousel = document.getElementById(carouselId);
-            const scrollAmount = 300;
-            carousel.scrollBy({
-                left: direction * scrollAmount,
-                behavior: 'smooth'
-            });
+        const carousels = {
+            carousel1: { currentIndex: 0, itemsPerView: 0 },
+            carousel2: { currentIndex: 0, itemsPerView: 0 },
+            carousel3: { currentIndex: 0, itemsPerView: 0 }
+        };
+
+        function calculateItemsPerView() {
+            const cardWidth = 320 + 15; // Card width + gap
+            const containerWidth = window.innerWidth - 100; // Minus padding
+            return Math.floor(containerWidth / cardWidth);
         }
 
-        // Auto-scroll functionality (optional)
-        document.querySelectorAll('.carousel').forEach(carousel => {
-            carousel.addEventListener('wheel', (e) => {
-                if (e.deltaY !== 0) {
-                    e.preventDefault();
-                    carousel.scrollBy({
-                        left: e.deltaY,
-                        behavior: 'smooth'
-                    });
-                }
+        function slideCarousel(carouselId, direction) {
+            const track = document.getElementById(carouselId);
+            const cards = track.children;
+            const totalCards = cards.length;
+            const itemsPerView = calculateItemsPerView();
+            
+            carousels[carouselId].currentIndex += direction;
+            
+            // Loop carousel
+            if (carousels[carouselId].currentIndex < 0) {
+                carousels[carouselId].currentIndex = Math.max(0, totalCards - itemsPerView);
+            } else if (carousels[carouselId].currentIndex > totalCards - itemsPerView) {
+                carousels[carouselId].currentIndex = 0;
+            }
+            
+            const offset = carousels[carouselId].currentIndex * (320 + 15);
+            track.style.transform = `translateX(-${offset}px)`;
+            
+            updateNavigationButtons(carouselId, totalCards, itemsPerView);
+        }
+
+        function updateNavigationButtons(carouselId, totalCards, itemsPerView) {
+            const wrapper = document.getElementById(carouselId).parentElement.parentElement;
+            const prevBtn = wrapper.querySelector('.prev');
+            const nextBtn = wrapper.querySelector('.next');
+            
+            // Show/hide buttons based on position (optional - remove these lines if you want continuous loop)
+            // prevBtn.disabled = carousels[carouselId].currentIndex === 0;
+            // nextBtn.disabled = carousels[carouselId].currentIndex >= totalCards - itemsPerView;
+        }
+
+        // Initialize all carousels
+        Object.keys(carousels).forEach(id => {
+            carousels[id].itemsPerView = calculateItemsPerView();
+        });
+
+        // Recalculate on window resize
+        window.addEventListener('resize', () => {
+            Object.keys(carousels).forEach(id => {
+                carousels[id].itemsPerView = calculateItemsPerView();
+                carousels[id].currentIndex = 0;
+                document.getElementById(id).style.transform = 'translateX(0)';
             });
         });
 
-        // Touch swipe for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.querySelectorAll('.carousel').forEach(carousel => {
-            carousel.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            carousel.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe(carousel);
-            });
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                slideCarousel('carousel1', -1);
+            } else if (e.key === 'ArrowRight') {
+                slideCarousel('carousel1', 1);
+            }
         });
-
-        function handleSwipe(carousel) {
-            if (touchEndX < touchStartX - 50) {
-                carousel.scrollBy({ left: 300, behavior: 'smooth' });
-            }
-            if (touchEndX > touchStartX + 50) {
-                carousel.scrollBy({ left: -300, behavior: 'smooth' });
-            }
-        }
     </script>
 </body>
 </html>
