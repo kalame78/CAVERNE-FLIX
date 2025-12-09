@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DV Caverne - Plateforme Éducative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-dv {
+            color: #ff0000;
+            font-weight: 900;
+            font-size: 32px;
+        }
+
+        .logo-text {
+            color: #fff;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #4a90a4 0%, #2a5f6f 100%);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%231a1a1a" width="1920" height="1080"/><ellipse cx="960" cy="400" rx="600" ry="300" fill="%23333" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-position: center;
+            filter: blur(2px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            padding: 0 30px;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 800;
+            color: #ff0000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.8);
+        }
+
+        .module-section {
+            padding: 60px 50px;
+            position: relative;
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .module-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .voir-tout {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .voir-tout:hover {
+            color: #fff;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+        }
+
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel {
+            display: flex;
+            gap: 15px;
+            transition: transform 0.5s ease;
+            padding: 10px 0;
+        }
+
+        .carousel-card {
+            min-width: 280px;
+            height: 160px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .carousel-card:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .carousel-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .carousel-card-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.7);
+            border: none;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            z-index: 100;
+            transition: all 0.3s;
+            opacity: 0;
+        }
+
+        .carousel-wrapper:hover .carousel-nav {
+            opacity: 1;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255,255,255,0.9);
+            color: #000;
+        }
+
+        .carousel-nav.prev {
+            left: 10px;
+        }
+
+        .carousel-nav.next {
+            right: 10px;
+        }
+
+        .placeholder-img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+        }
+
+        .module-1 .carousel-card:nth-child(1) .placeholder-img { background: linear-gradient(135deg, #8b6f47 0%, #5a4a3a 100%); }
+        .module-1 .carousel-card:nth-child(2) .placeholder-img { background: linear-gradient(135deg, #4a5f3a 0%, #2a3f2a 100%); }
+        .module-1 .carousel-card:nth-child(3) .placeholder-img { background: linear-gradient(135deg, #4a4a8f 0%, #2a2a5f 100%); }
+        .module-1 .carousel-card:nth-child(4) .placeholder-img { background: linear-gradient(135deg, #6a6a6a 0%, #3a3a3a 100%); }
+
+        .module-2 .carousel-card:nth-child(1) .placeholder-img { background: linear-gradient(135deg, #00d4ff 0%, #0080ff 100%); }
+        .module-2 .carousel-card:nth-child(2) .placeholder-img { background: linear-gradient(135deg, #ff8a00 0%, #cc6600 100%); }
+        .module-2 .carousel-card:nth-child(3) .placeholder-img { background: linear-gradient(135deg, #9b59b6 0%, #6a3a8c 100%); }
+
+        .module-3 .carousel-card:nth-child(1) .placeholder-img { background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); }
+        .module-3 .carousel-card:nth-child(2) .placeholder-img { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .module-section {
+                padding: 40px 20px;
+            }
+
+            .carousel-card {
+                min-width: 220px;
+                height: 130px;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-dv">DV</span>
+            <span class="logo-text">Caverne</span>
+        </div>
+        <div class="profile-icon">
+            <div style="width:100%;height:100%;background:linear-gradient(135deg, #4a90a4 0%, #2a5f6f 100%);"></div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Ton Programme Étape par Étape</h1>
+            <p class="hero-subtitle">Suis la trame complète du programme LA CAVERNE, module par module, et progresse dans ton apprentissage pas à pas.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">
+                    <span>▶</span>
+                    <span>Lecture</span>
+                </button>
+                <button class="btn btn-secondary">
+                    <span>ⓘ</span>
+                    <span>Infos</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="module-section module-1">
+        <div class="module-header">
+            <h2 class="module-title">MODULE 1 : Intelligence Juvénile & Spirituelle</h2>
+            <span class="voir-tout">VOIR TOUT ›</span>
+        </div>
+        <div class="carousel-wrapper">
+            <button class="carousel-nav prev" onclick="scrollCarousel('carousel1', -1)">‹</button>
+            <div class="carousel-container">
+                <div class="carousel" id="carousel1">
+                    <div class="carousel-card">
+                        <div class="placeholder-img">👨</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 1</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">🏕️</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 2</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">✨</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 3</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">🌲</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 4</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">📚</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 5</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">🎯</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 6</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-nav next" onclick="scrollCarousel('carousel1', 1)">›</button>
+        </div>
+    </section>
+
+    <section class="module-section module-2">
+        <div class="module-header">
+            <h2 class="module-title">MODULE 2 : Intelligence Financière</h2>
+            <span class="voir-tout">VOIR TOUT ›</span>
+        </div>
+        <div class="carousel-wrapper">
+            <button class="carousel-nav prev" onclick="scrollCarousel('carousel2', -1)">‹</button>
+            <div class="carousel-container">
+                <div class="carousel" id="carousel2">
+                    <div class="carousel-card">
+                        <div class="placeholder-img">📊</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 1</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">☕</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 2</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">💰</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 3</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">📈</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 4</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">💎</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-nav next" onclick="scrollCarousel('carousel2', 1)">›</button>
+        </div>
+    </section>
+
+    <section class="module-section module-3">
+        <div class="module-header">
+            <h2 class="module-title">Module 3 : Intelligence cognitive</h2>
+            <span class="voir-tout">VOIR TOUT ›</span>
+        </div>
+        <div class="carousel-wrapper">
+            <button class="carousel-nav prev" onclick="scrollCarousel('carousel3', -1)">‹</button>
+            <div class="carousel-container">
+                <div class="carousel" id="carousel3">
+                    <div class="carousel-card">
+                        <div class="placeholder-img">🧠</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 1</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">🎨</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 2</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">💡</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 3</div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="placeholder-img">🔬</div>
+                        <div class="carousel-card-overlay">
+                            <div class="carousel-card-title">Épisode 4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-nav next" onclick="scrollCarousel('carousel3', 1)">›</button>
+        </div>
+    </section>
+
+    <script>
+        function scrollCarousel(carouselId, direction) {
+            const carousel = document.getElementById(carouselId);
+            const scrollAmount = 300;
+            carousel.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        // Auto-scroll functionality (optional)
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            carousel.addEventListener('wheel', (e) => {
+                if (e.deltaY !== 0) {
+                    e.preventDefault();
+                    carousel.scrollBy({
+                        left: e.deltaY,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Touch swipe for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            carousel.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carousel.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe(carousel);
+            });
+        });
+
+        function handleSwipe(carousel) {
+            if (touchEndX < touchStartX - 50) {
+                carousel.scrollBy({ left: 300, behavior: 'smooth' });
+            }
+            if (touchEndX > touchStartX + 50) {
+                carousel.scrollBy({ left: -300, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
